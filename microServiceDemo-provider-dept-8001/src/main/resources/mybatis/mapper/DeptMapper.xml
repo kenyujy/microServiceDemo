@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="microservice.dao.DeptDao">
+
+    <resultMap type="microservice.entities.Dept" id="deptResultMap">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="location" property="location"/>
+        <result column="organization_id" property="organizationId"/>
+        <result column="db_source" property="dbSource"/>
+    </resultMap>
+
+    <resultMap type="microservice.entities.DeptWithOrg" id="deptOrgResultMap">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="location" property="location"/>
+        <result column="organization_name" property="organization"/>
+    </resultMap>
+
+
+    <select id="findAll" resultMap="deptResultMap" >
+        select * from dept
+    </select>
+
+    <select id="findDeptOrgResult" resultMap="deptOrgResultMap" >
+        SELECT dept.id, dept.name, dept.location, org.organization_name FROM dept dept LEFT JOIN organization org ON dept.organization_id = org.id
+    </select>
+
+</mapper>
