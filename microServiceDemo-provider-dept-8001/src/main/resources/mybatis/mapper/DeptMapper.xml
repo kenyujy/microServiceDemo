@@ -24,7 +24,15 @@
     </select>
 
     <select id="findDeptOrgResult" resultMap="deptOrgResultMap" >
-        SELECT dept.id, dept.name, dept.location, org.organization_name FROM dept dept LEFT JOIN organization org ON dept.organization_id = org.id
+        SELECT dept.id, dept.name, dept.location, org.organization_name FROM
+         dept dept LEFT JOIN organization org ON dept.organization_id = org.id
+    </select>
+
+    <select id="findDeptByMultiString" resultMap="deptResultMap" >
+        select * from dept where 1=1
+        <!-- 用open ，separator =and name like 构建查询字符串, collection赋值要用传入的 -->
+        <foreach item="item" index="index" collection="queryList" open=" and name like "
+        separator=" and name like " close="">#{item}</foreach>
     </select>
 
 </mapper>

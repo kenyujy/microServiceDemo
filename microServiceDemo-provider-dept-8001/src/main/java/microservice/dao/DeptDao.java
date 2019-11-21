@@ -16,7 +16,7 @@ public interface DeptDao {
     @Insert("insert into dept (name, location, db_source) values (#{name}, #{location}, database())")
     boolean addDept(Dept dept);
 
-    @Select("select * from dept where id= #{id}")
+    @Select("SELECT * FROM dept WHERE id= #{id}")
     @Results({   //result map, 查询结果column 映射到对象的属性
             @Result(id=true, column="id", property="id"),
             @Result(column="name", property="name"),
@@ -45,12 +45,14 @@ public interface DeptDao {
     List<Dept> findDept(@Param("dept") Dept dept);
 
     //接受一个String List参数，并按where like查询
+    /*
     @Select({"<script>",
             "select * from dept where 1=1 ",
             //用open ，separator =and name like 构建查询字符串, collection赋值要用传入的
             "<foreach item=\"item\" index=\"index\" collection=\"queryList\" open=\" and name like \" " +
                     "separator=\" and name like \" close=\"\">#{item}</foreach>",
             "</script>"})
+     */
     List<Dept> findDeptByMultiString(@Param("queryList") List<String> queryList);
 
 
