@@ -53,4 +53,8 @@ public class DeptService {
     public List<DeptWithOrg> findDeptOrgResult(){
         return deptDao.findDeptOrgResult();
     }
+
+    public long updateDeptHqName(String dept_name){
+        return deptDao.updateDeptHqName(dept_name);
+    }
 }

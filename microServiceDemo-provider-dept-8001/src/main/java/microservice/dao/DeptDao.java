@@ -75,4 +75,6 @@ public interface DeptDao {
     boolean updateDeptWithMaxLocation(@Param("db_source") String db_source);
 
     List<DeptWithOrg> findDeptOrgResult();
+
+    long updateDeptHqName(@Param("dept_name") String dept_name);
 }

@@ -27,4 +27,17 @@
         SELECT dept.id, dept.name, dept.location, org.organization_name FROM dept dept LEFT JOIN organization org ON dept.organization_id = org.id
     </select>
 
+    <update id="updateDeptHqName" parameterType="String">
+        <selectKey order="AFTER" keyColumn="id" resultType="long">
+        <!-- 用 selectKey 让 insert 和 update 返回操作结果，成功与否 -->
+        </selectKey>
+        UPDATE dept SET location=#{dept_name} where location like "%深_圳%"
+    </update>
+
+    <select id="selectUsers" resultType="map"> <!-- map 可以封装任意结果集？ -->
+        select id, username, hashedPassword
+        from some_table
+        where id = #{id}
+    </select>
+
 </mapper>

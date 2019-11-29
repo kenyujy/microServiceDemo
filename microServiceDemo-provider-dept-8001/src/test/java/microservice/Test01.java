@@ -75,4 +75,10 @@ public class Test01 {
         List<DeptWithOrg> list= deptService.findDeptOrgResult();
         System.out.println(list);
     }
+
+    @Test
+    public void test04(){
+        Long l= deptService.updateDeptHqName("深圳");
+        System.out.println(l);
+    }
 }
