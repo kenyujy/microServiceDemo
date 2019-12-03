@@ -36,12 +36,13 @@ public interface DeptDao {
     List<Dept> findAll();
 
 
-    @Select({"<script>",
+    /*@Select({"<script>",
             "select * from dept where 1=1 ",
             "<bind name='pattern' value=\"'%'+dept.name+'%'\" />",   //这里要注意啊！！！
             "<if test='dept.name != null'> and name like #{pattern} </if>",    //这里拼串只能用${}
             "<if test='dept.location != null'> and location= #{dept.location} </if>", //可以取出，没问题
             "</script>"})
+     */
     List<Dept> findDept(@Param("dept") Dept dept);
 
     //接受一个String List参数，并按where like查询

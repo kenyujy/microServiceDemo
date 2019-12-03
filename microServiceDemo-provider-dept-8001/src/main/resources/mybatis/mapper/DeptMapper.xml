@@ -35,6 +35,16 @@
         separator=" and name like " close="">#{item}</foreach>
     </select>
 
+
+    <select id="findDept" resultMap="deptResultMap" >
+        select * from dept where 1=1
+        <if test="null!= dept.name">
+            <bind name="name_pattern" value="'%'+dept.name+'%'" />
+        </if>
+        <if test="null!= dept.name"> and name like #{name_pattern}</if>
+        <if test="null!= dept.location"> and location= #{dept.location}</if>
+    </select>
+
     <update id="updateDeptHqName" parameterType="String">
         <selectKey order="AFTER" keyColumn="id" resultType="long">
         <!-- 用 selectKey 让 insert 和 update 返回操作结果，成功与否 -->

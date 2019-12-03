@@ -34,8 +34,8 @@ public class DeptController {
         return deptService.findByName(name);
     }
 
-    @RequestMapping(value="/dept/find", method= RequestMethod.GET)
-    public List<Dept> findDept(Dept dept){   // 参数不用@RequestBody 才行
+    @RequestMapping(value="/dept/find", method= RequestMethod.POST)
+    public List<Dept> findDept(@RequestBody Dept dept){   // 参数不用@RequestBody 才行
 
         return deptService.findDept(dept);
     }
