@@ -36,8 +36,9 @@ public class DeptController {
     }
 
     @RequestMapping(value="/dept/find", method= RequestMethod.POST)
-    public List<Dept> findDept(@RequestBody Dept dept){   // 参数不用@RequestBody 才行
+    public List<Dept> findDept(@RequestBody Dept dept){   // 参数要加 @RequestBody 才行
 
+        System.out.println(dept);
         return deptService.findDept(dept);
     }
 

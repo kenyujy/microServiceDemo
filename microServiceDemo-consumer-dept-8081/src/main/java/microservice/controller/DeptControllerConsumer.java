@@ -43,11 +43,14 @@ public class DeptControllerConsumer {
             str+="&location="+location;
         }
 
+
         Dept dept= new Dept();
         if (null!=name && ""!=name)
             dept.setName(name);
         if (null!=location && ""!=location)
             dept.setLocation(location);
+
+        System.out.println(dept);
 
         return restTemplate.postForObject(REST_PROVIDER_URL_PREFIX+"/dept/find", dept, List.class);
         // get template 传入 Dept实例????????

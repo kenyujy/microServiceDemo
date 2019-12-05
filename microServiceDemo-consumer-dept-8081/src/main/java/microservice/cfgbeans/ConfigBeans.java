@@ -18,8 +18,8 @@ public class ConfigBeans {
     }
 
     // 配置Robin 负载均衡算法，覆盖掉默认的轮询算法
-    @Bean
-    public IRule myRule(){
-        return new BestAvailableRule();
-    }
+    //@Bean
+    //public IRule myRule(){
+    //    return new BestAvailableRule();
+    //}
 }
