@@ -1,6 +1,7 @@
 package microservice.controller;
 
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import microservice.entities.Dept;
 import microservice.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class DeptController {
         return deptService.addDept(dept);
     }
 
+    @HystrixCommand //开启被 hystrix 管理
     @RequestMapping(value="/dept/list", method= RequestMethod.GET)
     public List<Dept> findAll(){
         System.out.println("service called");

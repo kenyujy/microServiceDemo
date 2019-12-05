@@ -14,7 +14,7 @@
         <module>microServiceDemo-consumer-dept-8081</module>
         <module>microServiceDemo-eureka-8761</module>
         <module>microServiceDemo-provider-dept-8002-hystrix</module>
-        <module>microServiceDemo-consumer-dept-9001-hystrixdashboard</module>
+        <module>microServiceDemo-dept-9001-hystrixdashboard</module>
         <module>microServiceDemo-Zuul-gateway-9527</module>
         <module>microServiceDemo-consumer-dept-8082-feign</module>
     </modules>
