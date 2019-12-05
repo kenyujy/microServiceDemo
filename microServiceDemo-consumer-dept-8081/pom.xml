@@ -11,56 +11,32 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>microService</groupId>
-    <artifactId>microServiceDemo-provider-dept-8002-hystrix</artifactId>
-    <packaging>war</packaging>
+    <artifactId>microServiceDemo-consumer-dept-8081</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <java.version>1.8</java.version>
         <!-- spring boot打包需要指定一个唯一的入口 -->
-        <start-class>ProviderDeptHystrix8002_Application</start-class>
+        <!-- 不能加mainClass，又一个坑！ -->
+        <start-class>ConsumerDept8081_Application</start-class>
         <!-- 部署到外部Tomcat时，要注明Tomcat版本 -->
         <!--<tomcat.version>8.5.46</tomcat.version>-->
     </properties>
 
     <dependencies>
-        <dependency> <!-- 引入工程下其他包 -->
+        <!-- 引入工程下其他包，主要是 entities -->
+        <dependency>
             <groupId>microService</groupId>
             <artifactId>microServiceDemo-api</artifactId>
             <version>${project.version}</version>
             <type>jar</type>  <!--引用本地工程-->
         </dependency>
-        <!-- mysql driver -->
+
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- spring cloud client -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-        <!-- spring cloud config-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -72,39 +48,45 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- undertow -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
+        <!-- 把 springboot web 内置的tomcat标注为provided -->
+        <!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
         </dependency>
-        <!-- actuator -->
+        -->
+        <!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
         </dependency>
+        -->
         <!-- 开发热部署 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
-        <!-- hystrix -->
+        <!-- ribbon 负载均衡 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
     </dependencies>
     <build>
-        <!-- 微服务详细信息解释需要 -->
-        <resources>
-            <resource>
-                <!-- 读取所有resource 下的文件-->
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -122,6 +104,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.1.9.RELEASE</version>
                 <configuration>
+                    <!-- 不能加mainClass，又一个坑！ -->
                     <!-- 打包成可执行jar 不能加layout标签？？-->
                     <classifier>exec</classifier>
                     <executable>true</executable>
@@ -145,4 +128,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

@@ -10,15 +10,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>microService</groupId>
-    <artifactId>microServiceDemo-consumer-dept-80</artifactId>
+    <artifactId>microServiceDemo-consumer-dept-8082-feign</artifactId>
     <packaging>jar</packaging>
 
     <properties>
         <java.version>1.8</java.version>
         <!-- spring boot打包需要指定一个唯一的入口 -->
         <!-- 不能加mainClass，又一个坑！ -->
-        <start-class>ConsumerDept80_Application</start-class>
+        <start-class>ConsumerDept8082_Application</start-class>
         <!-- 部署到外部Tomcat时，要注明Tomcat版本 -->
         <!--<tomcat.version>8.5.46</tomcat.version>-->
     </properties>
@@ -61,12 +60,7 @@
             <scope>provided</scope>
         </dependency>
         -->
-        <!--
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jetty</artifactId>
-        </dependency>
-        -->
+
         <!-- 开发热部署 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -80,6 +74,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+        </dependency>
+        <!-- spring-cloud-starter-openfeign - api也要一份 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

@@ -40,14 +40,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <!-- 要用jetty 先排除tomcat -->
-            <!--
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-tomcat</artifactId>
                 </exclusion>
             </exclusions>
-            -->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
         <!-- 把 springboot web 内置的tomcat标注为provided -->
         <!--
@@ -57,12 +59,7 @@
             <scope>provided</scope>
         </dependency>
         -->
-        <!--
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jetty</artifactId>
-        </dependency>
-        -->
+
         <!-- 开发热部署 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

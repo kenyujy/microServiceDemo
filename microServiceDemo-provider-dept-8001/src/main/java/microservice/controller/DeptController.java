@@ -21,6 +21,7 @@ public class DeptController {
 
     @RequestMapping(value="/dept/list", method= RequestMethod.GET)
     public List<Dept> findAll(){
+        System.out.println("service called");
         return deptService.findAll();
     }
 
